@@ -30,7 +30,7 @@
         </li>
         <li v-else class="flex gap-5"> 
           <button @click="goToLogin"  class="bg-blue-500 text-white rounded-md px-4 py-2">Sign In</button>
-          <button class="bg-red-500 text-white rounded-md px-4 py-2">Sign up</button>
+          <button @click="goToLogout" class="bg-red-500 text-white rounded-md px-4 py-2">Sign up</button>
         </li>
       </ul>
     </div>
@@ -46,8 +46,17 @@ export default {
       required: true
     }
   },
+data() {
+  return {
+    isLoggedIn: localStorage.getItem("isLoggedIn")
+  }
+},
   methods: {
     goToLogin(){
+      // router.push("/login")
+      this.$router.push("/login")
+    },
+     goToLogout(){
       // router.push("/login")
       this.$router.push("/login")
     }

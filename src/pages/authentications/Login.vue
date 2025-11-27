@@ -15,7 +15,7 @@
           placeholder="name@flowbite.com"
           
         />
-        <p v-if="val_error.email=''">{{val_error.email}}</p>
+        <p v-if="email ==''" class="text-xs text-red-500">{{val_error.email}}</p>
         {{email}}
       </div>
       <div class="mb-5">
@@ -30,8 +30,9 @@
           id="password"
           class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
           placeholder="••••••••"
-          required
+          
         />
+        <p v-if="password==''" class="text-xs text-red-500">{{val_error.password}}</p>
         {{password}}
       </div>
       <label for="remember" class="flex items-center mb-5">
@@ -80,6 +81,14 @@ export default {
             this.val_error.email= "email cannot be empty"
             return;
         }
+        if (this.password == "") {
+            this.val_error.password= "email cannot be empty"
+            return;
+        }
+
+        // localStorage.setItem("user_data", JSON.stringify({email: this.email, password:this.password}))
+        localStorage.setItem("isLoggedIn", true)
+        this.$router.replace('/')
     }
   },
 };

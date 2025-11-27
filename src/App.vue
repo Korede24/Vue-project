@@ -1,5 +1,5 @@
 <template >
-    <Navbar :isAuthenticated="false"/>
+    <Navbar :isAuthenticated="isAuthenticated"/>
   <!-- <nav>
       <li><router-link to="/">Home</router-link></li>
       <li><router-link to="/about">About</router-link></li>
@@ -18,13 +18,36 @@
 // export default {
 //     data() {
 //         return {
-//             count: 0
+//             count: 0,
+//             isAuthenticated: localStorage.getItem("isLoggedIn")
 //         }
 //     },
+  
 // }
 import Navbar from './components/Navbar.vue';
 export default {
 components: {Navbar},
+ data() {
+        return {
+            count: 0,
+            isAuthenticated: JSON.parse(localStorage.getItem("isLoggedIn")) 
+
+            
+        }
+    },
+  mounted(){
+    console.log(typeof(this.isAuthenticated));
+    console.log(this.isAuthenticated);
+    
+    
+      if (this.isAuthenticated) {
+        this.isAuthenticated= true
+      }else{
+        this.isAuthenticated= false
+
+      }
+
+  },
 };
 </script>
 <style lang="">
